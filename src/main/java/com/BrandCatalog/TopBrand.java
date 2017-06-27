@@ -119,7 +119,10 @@ public class TopBrand {
 		} else if (browser.toLowerCase().equals(CHROME) && os.toLowerCase().equals(WINDOWS)) {
 			System.setProperty(CHROME_DRIVER_PROPS, userDir + CHROME_DRIVER_PATH_WINDOWS);
 			driver = new ChromeDriver(new ChromeOptions());
-		} else {
+		} else if (browser.toLowerCase().equals(CHROME) && os.toLowerCase().contains("linux")) {
+                        System.setProperty(CHROME_DRIVER_PROPS, userDir + CHROME_DRIVER_PATH_MAC);
+                        driver = new ChromeDriver(new ChromeOptions());
+		}else {
 			driver = new FirefoxDriver(DesiredCapabilities.firefox());
 		}
 		driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
